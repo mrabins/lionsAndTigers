@@ -40,12 +40,12 @@ class ViewController: UIViewController {
         self.breedLabel.text = myTiger.breed
         self.randomFactLabel.text = myTiger.randomFact()
         
-        myTiger.chuff()
-        myTiger.chuffANumberOfTimes(5, isLoud: true)
+        // myTiger.chuff()
+        // myTiger.chuffANumberOfTimes(5, isLoud: true)
         
        self.myTigers.append(myTiger)
         
-        println("My Tiger's name is: \(myTiger.name), it's age is \(myTiger.age), it's breed is \(myTiger.breed), and it's image is \(myTiger.image)")
+        //  println("My Tiger's name is: \(myTiger.name), it's age is \(myTiger.age), it's breed is \(myTiger.breed), and it's image is \(myTiger.image)")
         
         var secondTiger = Tiger()
         secondTiger.name = "Tigress"
@@ -75,18 +75,18 @@ class ViewController: UIViewController {
         
         self.myTigers += [secondTiger,thirdTiger,fourthTiger]
         
-        myTiger.chuffANumberOfTimes(3)
-        secondTiger.chuffANumberOfTimes(2)
+        // myTiger.chuffANumberOfTimes(3)
+        // secondTiger.chuffANumberOfTimes(2)
         
         var lion = Lion()
-        lion.age = lion.age * 4
+        lion.age = 4
         lion.isAlphaMale = false
         lion.image = UIImage(named: "Lion.jpg")
         lion.name = "Mufasa"
         lion.subspecies = "West Africa"
         
         var lioness = Lion()
-        lioness.age = lion.age * 3
+        lioness.age = 3
         lioness.isAlphaMale = false
         lioness.image = UIImage(named: "Lioness.jpeg")
         lion.name = "Sarabi"
@@ -94,6 +94,9 @@ class ViewController: UIViewController {
         
         lion.roar()
         lioness.roar()
+        
+        lion.changeToAlphaMale()
+        println(lion.isAlphaMale)
         
         self.lions += [lion,lioness]
         
@@ -124,7 +127,7 @@ class ViewController: UIViewController {
     
     func updateView () {
         
-        UIView.transitionWithView(self.view, duration: 2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+        UIView.transitionWithView(self.view, duration: 2, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: {
             
             if self.currentAnimal.species == "Tiger" {
                 let tiger = self.myTigers[self.currentAnimal.index]
@@ -140,6 +143,8 @@ class ViewController: UIViewController {
                 self.breedLabel.text = lion.subspecies
                 self.ageLabel.text = "\(lion.age)"
                 self.nameLabel.text = lion.name
+                self.randomFactLabel.text = lion.randomFact()
+                
             }
             self.randomFactLabel.hidden = false
             }, completion: {
